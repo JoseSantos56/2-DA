@@ -1,5 +1,5 @@
-#ifndef DAFIRSTPROJECT_GRAPH
-#define DAFIRSTPROJECT_GRAPH
+#ifndef DA_SECOND_PROJECT_GRAPH_H
+#define DA_SECOND_PROJECT_GRAPH_H
 
 #include <iostream>
 #include <vector>
@@ -496,4 +496,4 @@ Graph<T>::~Graph() {
     deleteMatrix(pathMatrix, vertexSet.size());
 }
 
-#endif /* DAFIRSTPROJECT_GRAPH */
+#endif /* DA_SECOND_PROJECT_GRAPH_H*/
