@@ -86,6 +86,8 @@ int splitGap(Graph<int>& g, std::vector<webInfo>& allWebs, int bestWebId, int be
 	}
 
 	g.removeVertex(bestWebId);
+	g.addVertex(leftId);
+	g.addVertex(rightId);
 
 	for (const auto& other : allWebs) {
 		if(other.id == bestWebId) continue;
@@ -102,10 +104,15 @@ int splitGap(Graph<int>& g, std::vector<webInfo>& allWebs, int bestWebId, int be
 
 	}
 
-	g.addVertex(leftId);
-	g.addVertex(rightId);
+	// A posição da web tem de ser igual ao ID
+	std::vector<webInfo> newAllWebs;
+	for (size_t i = 0; i < allWebs.size(); i++) {
+		if ((int)i == leftId) newAllWebs.push_back(leftWeb);
+		else newAllWebs.push_back(allWebs[i]);
+	}
 
-	// change allwebs vector
+	newAllWebs.push_back(rightWeb);
+	allWebs = newAllWebs;
 
 	return 0;
 }
