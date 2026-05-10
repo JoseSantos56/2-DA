@@ -1,9 +1,27 @@
 #ifndef SPLITTING_H
 #define SPLITTING_H
+
 #include "Graph.h"
-#include <utility>
+#include <vector>
+
+/* ========= Structs utilizadas apenas para fase inicial de desenvolvimento ==========*/
+
+struct interval {
+    int start;
+    int end;
+};
+
+struct webInfo {
+    int id;
+    std::vector<interval> intervals;
+};
+
+/* ===================================== Até aqui ===================================== */
 
 int chooseWeb(Graph<int>& g);       // Greedy escolher a web que têm amior innterseção de webs
-std::pair<int,int> splitWeb();      // Splittar nos intervalos onde a variavel não é usado o maior tempo possivel
+int findLargestGap(const webInfo& web);                // De perferencia o allWebs tem como indice no vetor o ID do vertex/Web
+bool websIntersection(const webInfo& web1, const webInfo& web2);
+int splitGap(Graph<int>& g, std::vector<webInfo>& allWebs, int bestWeb, int bestGapId);
+void splitWeb(Graph<int>& g, std::vector<webInfo>& allWebs, int bestWeb);     // Splittar nos intervalos onde a variável não é usada o maior tempo possível
 
 #endif //SPLITTING_H
