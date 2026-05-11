@@ -65,8 +65,8 @@ bool websIntersection(const webInfo& web1, const webInfo& web2) {		// Rever mais
 }
 
 
-int splitGap(Graph<int>& g, std::vector<webInfo>& allWebs, int bestWebId, int bestGapId) {
-	webInfo old = allWebs[bestWebId];
+int splitGap(Graph<int>& g, std::vector<webInfo>& allWebs, const int bestWebId, const int bestGapId) {
+	const webInfo& old = allWebs[bestWebId];
 
 	// Descobrir os ids e os intervalos para cada nova web
 	webInfo leftWeb;
@@ -101,11 +101,10 @@ int splitGap(Graph<int>& g, std::vector<webInfo>& allWebs, int bestWebId, int be
 			g.addEdge(rightId, other.id, 1);
 			g.addEdge(other.id,rightId, 1);
 		}
-
 	}
 
 	// A posição da web tem de ser igual ao ID
-	std::vector<webInfo> newAllWebs;
+	std::vector<webInfo> newAllWebs;		// vetor para adicionar as novas webs
 	for (size_t i = 0; i < allWebs.size(); i++) {
 		if ((int)i == leftId) newAllWebs.push_back(leftWeb);
 		else newAllWebs.push_back(allWebs[i]);
@@ -116,6 +115,61 @@ int splitGap(Graph<int>& g, std::vector<webInfo>& allWebs, int bestWebId, int be
 
 	return 0;
 }
+
+int splitMiddle(Graph<int>& g, std::vector<webInfo>& allWebs, const int bestWebId) {
+	webInfo old = allWebs[bestWebId];
+
+	int startOld = old.intervals[0].start;
+	int endOld = old.intervals[0].end;
+
+	int middle = (endOld - startOld) / 2 + startOld;		// Evita overflow
+
+	// Descobrir os ids e os intervalos para cada nova web
+	webInfo leftWeb;
+	int leftId = old.id;
+
+	leftWeb.id = leftId;
+
+	leftWeb.intervals.push_back({startOld, middle});
+
+	webInfo rightWeb;
+	int rightId = g.getNumVertex();
+
+	rightWeb.id = rightId;
+
+	rightWeb.intervals.push_back({middle + 1, endOld});
+
+	g.removeVertex(bestWebId);
+	g.addVertex(leftId);
+	g.addVertex(rightId);
+
+	for (const auto& other : allWebs) {
+		if(other.id == bestWebId) continue;
+
+		if (websIntersection(leftWeb, other)) {
+			g.addEdge(leftId, other.id, 1);
+			g.addEdge(other.id,leftId, 1);
+		}
+
+		if (websIntersection(rightWeb, other)) {
+			g.addEdge(rightId, other.id, 1);
+			g.addEdge(other.id,rightId, 1);
+		}
+	}
+
+	// A posição da web tem de ser igual ao ID
+	std::vector<webInfo> newAllWebs;		// vetor para adicionar as novas webs
+	for (size_t i = 0; i < allWebs.size(); i++) {
+		if ((int)i == leftId) newAllWebs.push_back(leftWeb);
+		else newAllWebs.push_back(allWebs[i]);
+	}
+
+	newAllWebs.push_back(rightWeb);
+	allWebs = newAllWebs;
+
+	return 0;
+}
+
 
 void splitWeb(Graph<int>& g, std::vector<webInfo>& allWebs, int bestWebID) {    /*   webInfo e allWebs tem de ser implementada por quem faz o parser */
     // Modificação do grafo original pois apenas é aplicada uma das abordagens (splitting ou spilling) por cada grafo
