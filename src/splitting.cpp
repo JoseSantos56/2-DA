@@ -171,8 +171,31 @@ int splitMiddle(Graph<int>& g, std::vector<webInfo>& allWebs, const int bestWebI
 }
 
 
-void splitWeb(Graph<int>& g, std::vector<webInfo>& allWebs, int bestWebID) {    /*   webInfo e allWebs tem de ser implementada por quem faz o parser */
+int splitWeb(Graph<int>& g, std::vector<webInfo>& allWebs, const int k) {    /*   webInfo e allWebs tem de ser implementada por quem faz o parser */
     // Modificação do grafo original pois apenas é aplicada uma das abordagens (splitting ou spilling) por cada grafo
+	if (/* Função coloringt */) {
+		return 0;
+	}
 
-	return;
+	for (int tries = 0; tries < k; tries++) {
+
+		int bestWebId = 0;
+		if ((bestWebId = chooseWeb(g)) == -1) return -1;		// Erro se não tiver webs
+
+		webInfo& web = allWebs[bestWebId];
+		int bestGapId = 0;
+		if ((bestGapId = findLargestGap(web)) != -1) {
+			splitGap(g, allWebs, bestWebId, bestGapId);
+		}
+
+		else {
+			splitMiddle(g, allWebs, bestWebId);
+		}
+
+		if (/* Função coloringt */) {
+			return 0;
+		}
+	}
+
+	return -1;
 }
