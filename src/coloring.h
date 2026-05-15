@@ -2,21 +2,8 @@
 #define COLORING_H
 
 #include "Graph.h"
-#include <map>
+#include "parser.h"
 #include <vector>
-#include <string>
-
-/**
- * @brief Result of a register allocation attempt.
- *
- * Maps each web ID to a register index (0..K-1),
- * or to -1 if the web was spilled to memory.
- */
-struct AllocationResult {
-    int registersUsed;                  ///< Number of registers actually used (0 if infeasible)
-    std::map<int, int> webToRegister;   ///< web ID -> register index (-1 = spilled)
-    bool feasible;                      ///< true if allocation succeeded without spilling
-};
 
 /**
  * @brief Greedy graph coloring algorithm (T2.1 - algorithm: basic).
@@ -24,9 +11,9 @@ struct AllocationResult {
  * Implements the greedy coloring heuristic from the project description:
  * repeatedly removes nodes with degree < K onto a stack, then pops
  * and assigns colors. If the graph cannot be colored with K colors,
- * returns a result with feasible=false and all webs assigned to memory.
+ * reports infeasibility via stderr and returns all webs to memory.
  *
- * Time complexity: O(V * (V + E)) where V = number of webs, E = number of edges.
+ * Time complexity: O(V * (V + E)) where V = number of webs, E = edges.
  *
  * @param g   Interference graph (nodes = web IDs)
  * @param K   Maximum number of registers available
@@ -53,8 +40,11 @@ AllocationResult spillingColoring(Graph<int>& g, int K, int maxSpills);
 /**
  * @brief Chooses the best web to spill (highest degree = most interfering).
  *
+ * Rationale: spilling the most-connected web removes the most edges,
+ * giving the best chance of making the remaining graph K-colorable.
+ *
  * @param g              Interference graph
- * @param spilledWebs    Set of already-spilled web IDs to skip
+ * @param spilledWebs    Already-spilled web IDs to skip
  * @return               Web ID to spill, or -1 if none available
  */
 int chooseSpillWeb(Graph<int>& g, const std::vector<int>& spilledWebs);
