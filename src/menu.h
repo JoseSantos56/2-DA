@@ -6,14 +6,19 @@
 #ifndef DA_SECOND_PROJECT_MENU_H
 #define DA_SECOND_PROJECT_MENU_H
 
+#include "Graph.h"
 #include "parser.h"
+#include "splitting.h"
 #include <string>
 
 class Menu {
 public:
-    static int executeBatch(const std::string& rangesFile, const std::string& registersFile, const std::string& outputFile);
+    void executeMenu();
 
-    static int executeMenu();
+    void executeBatch(const std::string& rangesFile, const std::string& registersFile, const std::string& outputFile);
+
+private:
+
 
 };
 

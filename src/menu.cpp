@@ -6,7 +6,12 @@
 #include <iostream>
 #include <fstream>
 
-int Menu::executeBatch(const std::string& rangesFile, const std::string& registersFile, const std::string& outputFile) {
+void Menu::executeMenu() {
+    // Implementação simplificada
+    std::cout << "interactive mode (to implement)" << std::endl;
+}
+
+void Menu::executeBatch(const std::string& rangesFile, const std::string& registersFile, const std::string& outputFile) {
     try {
         // Parse
         auto ranges = Parser::parseRanges(rangesFile);
@@ -16,12 +21,5 @@ int Menu::executeBatch(const std::string& rangesFile, const std::string& registe
 
     catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
-        return 1;
     }
-}
-
-int Menu::executeMenu() {
-    // Implementação simplificada
-    std::cout << "interactive mode (to implement)" << std::endl;
-    return 0;
 }

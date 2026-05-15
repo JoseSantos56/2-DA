@@ -35,9 +35,41 @@ struct Web {
     int id;
     std::string variable;
     std::set<int> lines;
+    std::set<int> defslines;
+    std::set<int> useslines;
 
     Web() : id(-1) {}
     Web(int webId, const std::string& var) : id(webId), variable(var) {}
+
+    /**
+     * @brief Adiciona linhas de um live range ao web
+     * @param range Live range a adicionar
+     */
+    void addRange(const LiveRange& range) {
+        lines.insert(range.lines.begin(), range.lines.end());
+
+        // Registar definições e usos
+        if (range.startsWithDef && !range.lines.empty()) {
+            defsLines.insert(range.lines.front());
+        }
+        if (range.endsWithUse && !range.lines.empty()) {
+            usesLines.insert(range.lines.back());
+        }
+    }
+
+    /**
+     * @brief Verifica se tem definição numa linha específica
+     */
+    bool hasDefAt(int line) const {
+        return defsLines.find(line) != defsLines.end();
+    }
+
+    /**
+     * @brief Verifica se tem uso numa linha específica
+     */
+    bool hasUseAt(int line) const {
+        return usesLines.find(line) != usesLines.end();
+    }
 
     /**
      * @brief Verifica interferência com outro web
@@ -46,8 +78,7 @@ struct Web {
         if (lines.empty() || other.lines.empty()) return false;
 
         // Otimização: verificar limites
-        if (*lines.rbegin() < *other.lines.begin() ||
-            *other.lines.rbegin() < *lines.begin()) {
+        if (*lines.rbegin() < *other.lines.begin() || *other.lines.rbegin() < *lines.begin()) {
             return false;
         }
 
