@@ -27,3 +27,29 @@ int chooseNextWeb(Graph<int>& g, const ColoringState& state) {
 
     return bestWebId;
 }
+
+
+bool isColorAvailable(ColoringState& state, const int webId, const int color) {
+
+    return state.adjColors[webId].count(color) == 0;
+}
+
+void updateSaturation(Graph<int>& g, ColoringState& state, const int webId, const int color) {
+
+    Vertex<int>* v = g.findVertex(webId);
+    if (v == nullptr) return;
+
+    for (auto e : v->getAdj()) {
+        int adj = e->getDest()->getInfo();
+
+        if (!state.processed[adj] && state.adjColors[adj].insert(color).second) {
+            state.saturation[adj]++;
+        }
+    }
+}
+
+
+
+
+
+
