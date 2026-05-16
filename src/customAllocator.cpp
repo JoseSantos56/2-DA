@@ -29,7 +29,7 @@ int chooseNextWeb(Graph<int>& g, const ColoringState& state) {
 }
 
 
-bool isColorAvailable(ColoringState& state, const int webId, const int color) {
+bool isColorAvailable(const ColoringState& state, const int webId, const int color) {
 
     return state.adjColors[webId].count(color) == 0;
 }
@@ -108,7 +108,7 @@ bool backtrackDSatur(Graph<int>& g, const int k, ColoringState& state, int spill
     return false;
 }
 
-ColoringState initState(Graph<int>& g, int v) {
+ColoringState initState(Graph<int>& g, const int v) {
 
     ColoringState state;
     state.colors.resize(v, -1);
@@ -124,7 +124,7 @@ ColoringState initState(Graph<int>& g, int v) {
     return state;
 }
 
-bool greedyDSatur(Graph<int>& g, int k, std::vector<int>& colors, std::vector<bool>& spilled) {
+bool greedyDSatur(Graph<int>& g, const int k, std::vector<int>& colors, std::vector<bool>& spilled) {
 
     int v = g.getNumVertex();
 
@@ -139,7 +139,7 @@ bool greedyDSatur(Graph<int>& g, int k, std::vector<int>& colors, std::vector<bo
 
         for (int color = 0; color < k; color++) {
 
-            if (isColorAvailable(state, webId, color)) {
+            if (isColorAvailable(state, webId, color)) {        // Caso tenha uma cor disponível
 
                 state.colors[webId] = color;
                 state.processed[webId] = true;
@@ -165,5 +165,28 @@ bool greedyDSatur(Graph<int>& g, int k, std::vector<int>& colors, std::vector<bo
     return true;
 }
 
+bool customAllocate(Graph<int>& g, const int k, std::vector<int>& colors, std::vector<bool>& spilled) {
 
+    int v = g.getNumVertex();
 
+    colors.clear();
+    spilled.clear();
+
+    // Grafos pequenos (até 15 vértices)
+    if (v <= 15) {
+
+        // Número máximo de spills aumenta progressivamente
+        for (int maxSpills = 0; maxSpills <= v; maxSpills++) {
+            ColoringState state = initState(g, v);
+
+            if (backtrackDSatur(g, k, state, maxSpills)) {
+                colors = state.colors;
+                spilled = state.spilled;
+                return true;
+            }
+        }
+    }
+
+    // Grafos grandes (mais de 15 vértices)
+    return greedyDSatur(g, k, colors, spilled);
+}
