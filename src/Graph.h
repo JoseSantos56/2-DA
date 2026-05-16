@@ -7,8 +7,7 @@
 #include <limits>
 #include <algorithm>
 
-// #include "../data_structures/MutablePriorityQueue.h" // not needed
- 
+
 template <class T>
 class Edge;
 
@@ -20,7 +19,6 @@ template <class T>
 class Vertex {
 public:
     Vertex(T in);
-    bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
 
     T getInfo() const;
     std::vector<Edge<T> *> getAdj() const;
@@ -47,7 +45,6 @@ public:
     bool removeEdge(T in);
     void removeOutgoingEdges();
 
-    // friend class MutablePriorityQueue<Vertex>;
 protected:
     T info;                // info node
     std::vector<Edge<T> *> adj;  // outgoing edges
