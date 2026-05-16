@@ -6,14 +6,14 @@
 // Vou ter de dar include ao coloring.h
 
 int chooseWeb(Graph<int>& g) {          // Greedy
-    int density = -1;
+    int bestDegree = -1;
     int bestWebId = -1;
 
-    for (auto w: g.getVertexSet()) {        // A web com maior densidade é escolhida
+    for (auto w: g.getVertexSet()) {        // A web com maior degree é escolhida
         int indegree = w->getIndegree();
 
-        if (indegree > density) {
-            density = indegree;
+        if (indegree > bestDegree) {
+            bestDegree = indegree;
             bestWebId = w->getInfo();
         }
     }
@@ -21,7 +21,7 @@ int chooseWeb(Graph<int>& g) {          // Greedy
     return bestWebId;      // Retorna -1 caso não tenha webs
 }
 
-int findLargestGap(const webInfo& web) {		// Escolhe o maior gap da web selecionada
+int findLargestGap(const WebInfo& web) {		// Escolhe o maior gap da web selecionada
 	// Em caso de empate escolhemos o primeiro gap
 	int bestGapId = -1;
 	int largestGapSize = -1;
@@ -40,7 +40,7 @@ int findLargestGap(const webInfo& web) {		// Escolhe o maior gap da web selecion
 	return bestGapId;		// Return -1 em caso de não ter gaps
 }
 
-bool websIntersection(const webInfo& web1, const webInfo& web2) {		// Rever mais tarde por causa dos sinais
+bool websIntersection(const WebInfo& web1, const WebInfo& web2) {		// Rever mais tarde por causa dos sinais
 	size_t i = 0, j = 0;
 
 	while (i < web1.intervals.size() && j < web2.intervals.size()) {
@@ -65,11 +65,11 @@ bool websIntersection(const webInfo& web1, const webInfo& web2) {		// Rever mais
 }
 
 
-int splitGap(Graph<int>& g, std::vector<webInfo>& allWebs, const int bestWebId, const int bestGapId) {
-	const webInfo& old = allWebs[bestWebId];
+int splitGap(Graph<int>& g, std::vector<WebInfo>& allWebs, const int bestWebId, const int bestGapId) {
+	const WebInfo& old = allWebs[bestWebId];
 
 	// Descobrir os ids e os intervalos para cada nova web
-	webInfo leftWeb;
+	WebInfo leftWeb;
 	int leftId = old.id;
 
 	leftWeb.id = leftId;
@@ -77,7 +77,7 @@ int splitGap(Graph<int>& g, std::vector<webInfo>& allWebs, const int bestWebId, 
 		leftWeb.intervals.push_back(old.intervals[i]);
 	}
 
-	webInfo rightWeb;
+	WebInfo rightWeb;
 	int rightId = g.getNumVertex();
 
 	rightWeb.id = rightId;
@@ -104,7 +104,7 @@ int splitGap(Graph<int>& g, std::vector<webInfo>& allWebs, const int bestWebId, 
 	}
 
 	// A posição da web tem de ser igual ao ID
-	std::vector<webInfo> newAllWebs;		// vetor para adicionar as novas webs
+	std::vector<WebInfo> newAllWebs;		// vetor para adicionar as novas webs
 	for (size_t i = 0; i < allWebs.size(); i++) {
 		if ((int)i == leftId) newAllWebs.push_back(leftWeb);
 		else newAllWebs.push_back(allWebs[i]);
@@ -116,8 +116,8 @@ int splitGap(Graph<int>& g, std::vector<webInfo>& allWebs, const int bestWebId, 
 	return 0;
 }
 
-int splitMiddle(Graph<int>& g, std::vector<webInfo>& allWebs, const int bestWebId) {
-	webInfo old = allWebs[bestWebId];
+int splitMiddle(Graph<int>& g, std::vector<WebInfo>& allWebs, const int bestWebId) {
+	WebInfo old = allWebs[bestWebId];
 
 	int startOld = old.intervals[0].start;
 	int endOld = old.intervals[0].end;
@@ -125,14 +125,14 @@ int splitMiddle(Graph<int>& g, std::vector<webInfo>& allWebs, const int bestWebI
 	int middle = (endOld - startOld) / 2 + startOld;		// Evita overflow
 
 	// Descobrir os ids e os intervalos para cada nova web
-	webInfo leftWeb;
+	WebInfo leftWeb;
 	int leftId = old.id;
 
 	leftWeb.id = leftId;
 
 	leftWeb.intervals.push_back({startOld, middle});
 
-	webInfo rightWeb;
+	WebInfo rightWeb;
 	int rightId = g.getNumVertex();
 
 	rightWeb.id = rightId;
@@ -158,7 +158,7 @@ int splitMiddle(Graph<int>& g, std::vector<webInfo>& allWebs, const int bestWebI
 	}
 
 	// A posição da web tem de ser igual ao ID
-	std::vector<webInfo> newAllWebs;		// vetor para adicionar as novas webs
+	std::vector<WebInfo> newAllWebs;		// vetor para adicionar as novas webs
 	for (size_t i = 0; i < allWebs.size(); i++) {
 		if ((int)i == leftId) newAllWebs.push_back(leftWeb);
 		else newAllWebs.push_back(allWebs[i]);
@@ -171,9 +171,9 @@ int splitMiddle(Graph<int>& g, std::vector<webInfo>& allWebs, const int bestWebI
 }
 
 
-int splitWeb(Graph<int>& g, std::vector<webInfo>& allWebs, const int k) {    /*   webInfo e allWebs tem de ser implementada por quem faz o parser */
+int splitWeb(Graph<int>& g, std::vector<WebInfo>& allWebs, const int k) {    /*   WebInfo e allWebs tem de ser implementada por quem faz o parser */
     // Modificação do grafo original pois apenas é aplicada uma das abordagens (splitting ou spilling) por cada grafo
-	if (/* Função coloringt */) {
+	if (/* Função coloring */) {		// Verificação incial
 		return 0;
 	}
 
@@ -182,7 +182,7 @@ int splitWeb(Graph<int>& g, std::vector<webInfo>& allWebs, const int k) {    /* 
 		int bestWebId = 0;
 		if ((bestWebId = chooseWeb(g)) == -1) return -1;		// Erro se não tiver webs
 
-		webInfo& web = allWebs[bestWebId];
+		WebInfo& web = allWebs[bestWebId];
 		int bestGapId = 0;
 		if ((bestGapId = findLargestGap(web)) != -1) {
 			splitGap(g, allWebs, bestWebId, bestGapId);
@@ -192,7 +192,7 @@ int splitWeb(Graph<int>& g, std::vector<webInfo>& allWebs, const int k) {    /* 
 			splitMiddle(g, allWebs, bestWebId);
 		}
 
-		if (/* Função coloringt */) {
+		if (/* Função coloring */) {
 			return 0;
 		}
 	}

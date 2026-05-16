@@ -6,23 +6,23 @@
 
 /* ========= Structs utilizadas apenas para fase inicial de desenvolvimento ==========*/
 
-struct interval {
+struct Interval {
     int start;
     int end;
 };
 
-struct webInfo {
+struct WebInfo {
     int id;
-    std::vector<interval> intervals;
+    std::vector<Interval> intervals;
 };
 
 /* ===================================== Até aqui ===================================== */
 
 int chooseWeb(Graph<int>& g);       // Greedy escolher a web que têm amior innterseção de webs
-int findLargestGap(const webInfo& web);                // De perferencia o allWebs tem como indice no vetor o ID do vertex/Web
-bool websIntersection(const webInfo& web1, const webInfo& web2);
-int splitGap(Graph<int>& g, std::vector<webInfo>& allWebs, const int bestWebId, const int bestGapId);
-int splitMiddle(Graph<int>& g, std::vector<webInfo>& allWebs, const int bestWebId);
-int splitWeb(Graph<int>& g, std::vector<webInfo>& allWebs, const int k);     // Splittar nos intervalos onde a variável não é usada o maior tempo possível
+int findLargestGap(const WebInfo& web);                // De perferencia o allWebs tem como indice no vetor o ID do vertex/Web
+bool websIntersection(const WebInfo& web1, const WebInfo& web2);
+int splitGap(Graph<int>& g, std::vector<WebInfo>& allWebs, const int bestWebId, const int bestGapId);
+int splitMiddle(Graph<int>& g, std::vector<WebInfo>& allWebs, const int bestWebId);
+int splitWeb(Graph<int>& g, std::vector<WebInfo>& allWebs, const int k);     // Splittar a web
 
 #endif //SPLITTING_H
