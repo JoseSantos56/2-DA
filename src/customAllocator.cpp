@@ -18,7 +18,7 @@ int chooseNextWeb(Graph<int>& g, const ColoringState& state) {
         int sat = state.saturation[webId];
         int degree = v->getAdj().size();
 
-        if (sat > bestSat || (sat == bestSat && degree < bestDegree)) {
+        if (sat > bestSat || (sat == bestSat && degree > bestDegree)) {
             bestSat = sat;
             bestDegree = degree;
             bestWebId = webId;
@@ -63,9 +63,9 @@ bool backtrackDSatur(Graph<int>& g, const int k, ColoringState& state, int spill
             std::vector<int> oldColors = state.colors;
             std::vector<bool> oldSpilled = state.spilled;
             std::vector<bool> oldProcessed = state.processed;
-            std::vector<std::set<bool>> oldAdjColors = state.adjColors;
+            std::vector<std::set<int>> oldAdjColors = state.adjColors;
             std::vector<int> oldSaturation = state.saturation;
-            std::set<bool> oldUnprocessed = state.unprocessed;
+            std::set<int> oldUnprocessed = state.unprocessed;
 
             // Aplicar a cor e o que isso implica
             state.colors[webId] = color;
@@ -76,12 +76,12 @@ bool backtrackDSatur(Graph<int>& g, const int k, ColoringState& state, int spill
             if (backtrackDSatur(g, k, state, spillsLeft)) return true;
 
             // Backtrack
-            std::vector<int> colors = oldColors;
-            std::vector<bool> spilled = oldSpilled;
-            std::vector<bool> processed = oldProcessed;
-            std::vector<std::set<bool>> adjColors = oldAdjColors;
-            std::vector<int> saturation = oldSaturation;
-            std::set<bool> unprocessed = oldUnprocessed;
+            state.colors = oldColors;
+            state.spilled = oldSpilled;
+            state.processed = oldProcessed;
+            state.adjColors = oldAdjColors;
+            state.saturation = oldSaturation;
+            state.unprocessed = oldUnprocessed;
         }
     }
 
@@ -90,7 +90,7 @@ bool backtrackDSatur(Graph<int>& g, const int k, ColoringState& state, int spill
 
         std::vector<bool> oldSpilled = state.spilled;
         std::vector<bool> oldProcessed = state.processed;
-        std::set<bool> oldUnprocessed = state.unprocessed;
+        std::set<int> oldUnprocessed = state.unprocessed;
 
         // Alterar para spilled e tudo o que isso implica
         state.spilled[webId] = true;;

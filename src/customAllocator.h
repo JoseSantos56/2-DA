@@ -9,9 +9,9 @@ struct ColoringState {
     std::vector<int> colors;             //  -1 se não estiver colorido
     std::vector<bool> spilled;
     std::vector<bool> processed;
-    std::vector<std::set<bool>> adjColors;
+    std::vector<std::set<int>> adjColors;
     std::vector<int> saturation;
-    std::set<bool> unprocessed;
+    std::set<int> unprocessed;
 };
 
 int chooseNextWeb(Graph<int>& g, const ColoringState& state);       // Com base em DSatur usando o vertice de maior saturação
