@@ -63,7 +63,7 @@ std::vector<Web> WebBuilder::buildWebs(const std::vector<LiveRange>& ranges) {
                             varWebs[j].defsLines.begin(),
                             varWebs[j].defsLines.end()
                         );
-                        varWebs[i].useslines.insert(
+                        varWebs[i].usesLines.insert(
                             varWebs[j].usesLines.begin(),
                             varWebs[j].usesLines.end()
                         );
