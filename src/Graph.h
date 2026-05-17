@@ -19,6 +19,7 @@ template <class T>
 class Vertex {
 public:
     Vertex(T in);
+    bool operator<(Vertex<T> & vertex) const;
 
     T getInfo() const;
     std::vector<Edge<T> *> getAdj() const;
