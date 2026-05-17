@@ -1,9 +1,9 @@
 #include "Graph.h"
 #include "splitting.h"
+#include "coloring.h"
 
 #include <vector>
 
-// Vou ter de dar include ao coloring.h
 
 int chooseWeb(Graph<int>& g) {          // Greedy
     int bestDegree = -1;
@@ -171,13 +171,16 @@ int splitMiddle(Graph<int>& g, std::vector<WebInfo>& allWebs, const int bestWebI
 }
 
 
-int splitWeb(Graph<int>& g, std::vector<WebInfo>& allWebs, const int k) {    /*   WebInfo e allWebs tem de ser implementada por quem faz o parser */
+int splitWeb(Graph<int>& g, std::vector<WebInfo>& allWebs, const int n, const int k) {    /*   WebInfo e allWebs tem de ser implementada por quem faz o parser */
+
     // Modificação do grafo original pois apenas é aplicada uma das abordagens (splitting ou spilling) por cada grafo
-	if (/* Função coloring */) {		// Verificação incial
+	AllocationResult result = basicColoring(g, k);
+
+	if (result.success) {		// Verificação incial
 		return 0;
 	}
 
-	for (int tries = 0; tries < k; tries++) {
+	for (int tries = 0; tries < n; tries++) {
 
 		int bestWebId = 0;
 		if ((bestWebId = chooseWeb(g)) == -1) return -1;		// Erro se não tiver webs
@@ -192,7 +195,8 @@ int splitWeb(Graph<int>& g, std::vector<WebInfo>& allWebs, const int k) {    /* 
 			splitMiddle(g, allWebs, bestWebId);
 		}
 
-		if (/* Função coloring */) {
+		result = basicColoring(g, k);
+		if (result.success) {
 			return 0;
 		}
 	}
