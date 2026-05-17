@@ -1,0 +1,31 @@
+\doxysection{custom\+Allocator.\+h}
+\hypertarget{custom_allocator_8h_source}{}\label{custom_allocator_8h_source}\index{src/customAllocator.h@{src/customAllocator.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DA\_CUSTOMALLOCATOR\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DA\_CUSTOMALLOCATOR\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Graph.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_coloring_state}{ColoringState}}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ std::vector<int>\ colors;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ -\/1\ se\ não\ estiver\ colorido}}
+\DoxyCodeLine{00010\ \ \ \ \ std::vector<bool>\ spilled;}
+\DoxyCodeLine{00011\ \ \ \ \ std::vector<bool>\ processed;}
+\DoxyCodeLine{00012\ \ \ \ \ std::vector<std::set<int>>\ adjColors;}
+\DoxyCodeLine{00013\ \ \ \ \ std::vector<int>\ saturation;}
+\DoxyCodeLine{00014\ \ \ \ \ std::set<int>\ unprocessed;}
+\DoxyCodeLine{00015\ \};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{int}\ chooseNextWeb(\doxymbox{\hyperlink{class_graph}{Graph<int>}}\&\ g,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_coloring_state}{ColoringState}}\&\ state);\ \ \ \ \ \ \ \textcolor{comment}{//\ Com\ base\ em\ DSatur\ usando\ o\ vertice\ de\ maior\ saturação}}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{bool}\ isColorAvailable(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_coloring_state}{ColoringState}}\&\ state,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ webId,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ color);}
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{void}\ updateSaturation(\doxymbox{\hyperlink{class_graph}{Graph<int>}}\&\ g,\ \doxymbox{\hyperlink{struct_coloring_state}{ColoringState}}\&\ state,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ webId,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ color);\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ da\ saturação\ dos\ vizinhos\ do\ vértice}}
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{bool}\ backtrackDSatur(\doxymbox{\hyperlink{class_graph}{Graph<int>}}\&\ g,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ k,\ \doxymbox{\hyperlink{struct_coloring_state}{ColoringState}}\&\ state,\ \textcolor{keywordtype}{int}\ spillsLeft);\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Algoritmo\ DSatur\ +\ backtracking\ (Escolher\ o\ vértice\ com\ maior\ saturação,\ combinando\ um\ aboradegem\ de\ backtracking)}}
+\DoxyCodeLine{00021\ \doxymbox{\hyperlink{struct_coloring_state}{ColoringState}}\ initState(\doxymbox{\hyperlink{class_graph}{Graph<int>}}\&\ g,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ v);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Incialização\ do\ parametro\ state}}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{bool}\ greedyDSatur(\doxymbox{\hyperlink{class_graph}{Graph<int>}}\&\ g,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ k,\ std::vector<int>\&\ colors,\ std::vector<bool>\&\ spilled);\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Abordagem\ hibrida\ greedy\ com\ decisão\ baseada\ em\ DSatur}}
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{bool}\ customAllocate(\doxymbox{\hyperlink{class_graph}{Graph<int>}}\&\ g,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ k,\ std::vector<int>\&\ colors,\ std::vector<bool>\&\ spilled);\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Algoritmo\ final\ junta\ todas\ as\ funções}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//DA\_CUSTOMALLOCATOR\_H}}
+
+\end{DoxyCode}

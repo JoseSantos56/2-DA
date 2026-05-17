@@ -1,0 +1,61 @@
+\doxysection{Edge\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_edge}{}\label{class_edge}\index{Edge$<$ T $>$@{Edge$<$ T $>$}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_edge_ab976213419283ed754f42f57b195a288}\label{class_edge_ab976213419283ed754f42f57b195a288} 
+{\bfseries Edge} (\doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}orig, \doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*}dest, double w)
+\item 
+\Hypertarget{class_edge_a9a2de066dff8513dd788d553fc1d0c81}\label{class_edge_a9a2de066dff8513dd788d553fc1d0c81} 
+\doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} {\bfseries get\+Dest} () const
+\item 
+\Hypertarget{class_edge_a3df378e283d6c8be5be4170ac8d7f4e8}\label{class_edge_a3df378e283d6c8be5be4170ac8d7f4e8} 
+double {\bfseries get\+Weight} () const
+\item 
+\Hypertarget{class_edge_a2d36af60fa3dea16824bec12e5f68c58}\label{class_edge_a2d36af60fa3dea16824bec12e5f68c58} 
+bool {\bfseries is\+Selected} () const
+\item 
+\Hypertarget{class_edge_a40fc1470c5339203defca19b67c2535b}\label{class_edge_a40fc1470c5339203defca19b67c2535b} 
+\doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} {\bfseries get\+Orig} () const
+\item 
+\Hypertarget{class_edge_af0a900f3006e47b9f363df7429298eeb}\label{class_edge_af0a900f3006e47b9f363df7429298eeb} 
+\doxymbox{\hyperlink{class_edge}{Edge}}$<$ T $>$ \texorpdfstring{$\ast$}{*} {\bfseries get\+Reverse} () const
+\item 
+\Hypertarget{class_edge_a75458cfc838ca5aee5c34cb9f03b5647}\label{class_edge_a75458cfc838ca5aee5c34cb9f03b5647} 
+double {\bfseries get\+Flow} () const
+\item 
+\Hypertarget{class_edge_a87c8402c5edd6729a2c934e2a0cce6fe}\label{class_edge_a87c8402c5edd6729a2c934e2a0cce6fe} 
+void {\bfseries set\+Selected} (bool selected)
+\item 
+\Hypertarget{class_edge_afe8f8429025756c63f38e8c6fde7382c}\label{class_edge_afe8f8429025756c63f38e8c6fde7382c} 
+void {\bfseries set\+Reverse} (\doxymbox{\hyperlink{class_edge}{Edge}}$<$ T $>$ \texorpdfstring{$\ast$}{*}reverse)
+\item 
+\Hypertarget{class_edge_a1819116e2c156733a14bbd94cc27908e}\label{class_edge_a1819116e2c156733a14bbd94cc27908e} 
+void {\bfseries set\+Flow} (double flow)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_edge_ae4d65678b91bd9d814af4720ad87cd0c}\label{class_edge_ae4d65678b91bd9d814af4720ad87cd0c} 
+\doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} {\bfseries dest}
+\item 
+\Hypertarget{class_edge_af188b57b604f0d65e2da48733bd76426}\label{class_edge_af188b57b604f0d65e2da48733bd76426} 
+double {\bfseries weight}
+\item 
+\Hypertarget{class_edge_a5242549271b59544ad1189fb532b5bbe}\label{class_edge_a5242549271b59544ad1189fb532b5bbe} 
+bool {\bfseries selected} = false
+\item 
+\Hypertarget{class_edge_a4510c31e0479f9d25f6e35d086887192}\label{class_edge_a4510c31e0479f9d25f6e35d086887192} 
+\doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} {\bfseries orig}
+\item 
+\Hypertarget{class_edge_a6c1e5191f85afbd20cf6198815c9b079}\label{class_edge_a6c1e5191f85afbd20cf6198815c9b079} 
+\doxymbox{\hyperlink{class_edge}{Edge}}$<$ T $>$ \texorpdfstring{$\ast$}{*} {\bfseries reverse} = nullptr
+\item 
+\Hypertarget{class_edge_a30808601fa37f509147eabf9cc5f9ed6}\label{class_edge_a30808601fa37f509147eabf9cc5f9ed6} 
+double {\bfseries flow}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+Graph.\+h\end{DoxyCompactItemize}

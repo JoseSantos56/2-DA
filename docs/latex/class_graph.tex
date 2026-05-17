@@ -1,0 +1,52 @@
+\doxysection{Graph\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_graph}{}\label{class_graph}\index{Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_graph_a8b7b7465fbfd562e2a469f90a437ab75}\label{class_graph_a8b7b7465fbfd562e2a469f90a437ab75} 
+\doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} {\bfseries find\+Vertex} (const T \&in) const
+\item 
+\Hypertarget{class_graph_a00be284ea2be3b3d0f0d2e493b70245b}\label{class_graph_a00be284ea2be3b3d0f0d2e493b70245b} 
+bool {\bfseries add\+Vertex} (const T \&in)
+\item 
+\Hypertarget{class_graph_af9c903104ad69a7782979fa9caedf163}\label{class_graph_af9c903104ad69a7782979fa9caedf163} 
+bool {\bfseries remove\+Vertex} (const T \&in)
+\item 
+\Hypertarget{class_graph_ac61af3aafe6277215f5a3b3cc7d58ce2}\label{class_graph_ac61af3aafe6277215f5a3b3cc7d58ce2} 
+bool {\bfseries add\+Edge} (const T \&sourc, const T \&dest, double w)
+\item 
+\Hypertarget{class_graph_a8949d071d45bf93e171e275462e1007a}\label{class_graph_a8949d071d45bf93e171e275462e1007a} 
+bool {\bfseries remove\+Edge} (const T \&source, const T \&dest)
+\item 
+\Hypertarget{class_graph_aeb94a42983b1612ddbeade1a2a0132ea}\label{class_graph_aeb94a42983b1612ddbeade1a2a0132ea} 
+bool {\bfseries add\+Bidirectional\+Edge} (const T \&sourc, const T \&dest, double w)
+\item 
+\Hypertarget{class_graph_a0853eac15cdf0f06d63f4b8a7820ec71}\label{class_graph_a0853eac15cdf0f06d63f4b8a7820ec71} 
+int {\bfseries get\+Num\+Vertex} () const
+\item 
+\Hypertarget{class_graph_a41624b03fcb6bd29e4df574a1ec58541}\label{class_graph_a41624b03fcb6bd29e4df574a1ec58541} 
+std::\+vector$<$ \doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} $>$ {\bfseries get\+Vertex\+Set} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_graph_a676cdfb976eccfa82b631d2094c1cdac}\label{class_graph_a676cdfb976eccfa82b631d2094c1cdac} 
+int {\bfseries find\+Vertex\+Idx} (const T \&in) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_graph_a26b3a6b9c61f02f5b2cd38ad4c6a4953}\label{class_graph_a26b3a6b9c61f02f5b2cd38ad4c6a4953} 
+std::\+vector$<$ \doxymbox{\hyperlink{class_vertex}{Vertex}}$<$ T $>$ \texorpdfstring{$\ast$}{*} $>$ {\bfseries vertex\+Set}
+\item 
+\Hypertarget{class_graph_a4517f4351bc7f0348369b25b7c0b44fe}\label{class_graph_a4517f4351bc7f0348369b25b7c0b44fe} 
+double \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} {\bfseries dist\+Matrix} = nullptr
+\item 
+\Hypertarget{class_graph_afb9524726f8f3cda3115a0d03e3f6e09}\label{class_graph_afb9524726f8f3cda3115a0d03e3f6e09} 
+int \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} {\bfseries path\+Matrix} = nullptr
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+Graph.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,83 @@
+\doxysection{Web\+Builder Class Reference}
+\hypertarget{class_web_builder}{}\label{class_web_builder}\index{WebBuilder@{WebBuilder}}
+
+
+Builds webs from live ranges and constructs the interference graph.  
+
+
+
+
+{\ttfamily \+\#include $<$web\+\_\+builder.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std::\+vector$<$ \doxymbox{\hyperlink{struct_web}{Web}} $>$ \doxymbox{\hyperlink{class_web_builder_adb56fe62a1e6849a18360b9df0580534}{build\+Webs}} (const std::\+vector$<$ \doxymbox{\hyperlink{struct_live_range}{Live\+Range}} $>$ \&ranges)
+\begin{DoxyCompactList}\small\item\em Merges live ranges into webs for each variable. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_web_builder_afad27ac61e58c61b2bf9b10e3febe86c}{build\+Interference\+Graph}} (const std::\+vector$<$ \doxymbox{\hyperlink{struct_web}{Web}} $>$ \&webs, \doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ \&g)
+\begin{DoxyCompactList}\small\item\em Builds the interference graph from a set of webs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Builds webs from live ranges and constructs the interference graph. 
+
+A web is the union of live ranges of the same variable that overlap at any program point. Two webs interfere if they are simultaneously live at any program point. 
+
+\label{doc-func-members}
+\Hypertarget{class_web_builder_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_web_builder_afad27ac61e58c61b2bf9b10e3febe86c}\index{WebBuilder@{WebBuilder}!buildInterferenceGraph@{buildInterferenceGraph}}
+\index{buildInterferenceGraph@{buildInterferenceGraph}!WebBuilder@{WebBuilder}}
+\doxysubsubsection{\texorpdfstring{buildInterferenceGraph()}{buildInterferenceGraph()}}
+{\footnotesize\ttfamily \label{class_web_builder_afad27ac61e58c61b2bf9b10e3febe86c} 
+void Web\+Builder::\+build\+Interference\+Graph (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ \doxymbox{\hyperlink{struct_web}{Web}} $>$ \&}]{webs}{, }\item[{\doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ \&}]{g}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Builds the interference graph from a set of webs. 
+
+Builds interference graph from webs.
+
+Adds one vertex per web. Adds a bidirectional edge between two webs if they interfere (i.\+e., are simultaneously live at some point).
+
+Special case:\+ a web A starting at line X (definition) and web B ending at line X (use) do NOT interfere at that point.
+
+Time complexity:\+ O(\+W\texorpdfstring{$^\wedge$}{\string^}2 \texorpdfstring{$\ast$}{*} L) where W = number of webs, L = lines per web.
+
+
+\begin{DoxyParams}{Parameters}
+{\em webs} & Vector of webs \\
+\hline
+{\em g} & Output interference graph (\doxylink{class_graph}{Graph$<$int$>$}, node = web ID)\\
+\hline
+\end{DoxyParams}
+Two webs interfere if they are simultaneously live at any point. Special case:\+ web A defined at line X and web B last used at line X do NOT interfere (definition kills the previous value). \Hypertarget{class_web_builder_adb56fe62a1e6849a18360b9df0580534}\index{WebBuilder@{WebBuilder}!buildWebs@{buildWebs}}
+\index{buildWebs@{buildWebs}!WebBuilder@{WebBuilder}}
+\doxysubsubsection{\texorpdfstring{buildWebs()}{buildWebs()}}
+{\footnotesize\ttfamily \label{class_web_builder_adb56fe62a1e6849a18360b9df0580534} 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_web}{Web}} $>$ Web\+Builder::\+build\+Webs (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ \doxymbox{\hyperlink{struct_live_range}{Live\+Range}} $>$ \&}]{ranges}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Merges live ranges into webs for each variable. 
+
+Merges live ranges of the same variable into webs.
+
+Live ranges of the same variable are merged into a single web if they share any program line. Uses a greedy union approach.
+
+Time complexity:\+ O(\+R\texorpdfstring{$^\wedge$}{\string^}2 \texorpdfstring{$\ast$}{*} L) where R = number of ranges, L = lines per range.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ranges} & All live ranges parsed from input \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of webs (each with a unique ID)
+\end{DoxyReturn}
+Algorithm:\+ For each variable, collect all its live ranges. Use a greedy union:\+ start a new web with the first range, then for each subsequent range of the same variable, if it shares any line with an existing web, merge into it. Otherwise start a new web. Repeat until no more merges occur (transitive closure). 
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+web\+\_\+builder.\+h\item 
+src/\+\doxymbox{\hyperlink{web__builder_8cpp}{web\+\_\+builder.\+cpp}}\end{DoxyCompactItemize}

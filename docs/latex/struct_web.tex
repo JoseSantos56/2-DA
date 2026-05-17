@@ -1,0 +1,77 @@
+\doxysection{Web Struct Reference}
+\hypertarget{struct_web}{}\label{struct_web}\index{Web@{Web}}
+
+
+\doxylink{struct_web}{Web} (união de live ranges).  
+
+
+
+
+{\ttfamily \+\#include $<$parser.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_web_a75fb1f1258cb443c28750725023b5d28}\label{struct_web_a75fb1f1258cb443c28750725023b5d28} 
+{\bfseries Web} (int web\+Id, const std::\+string \&var)
+\item 
+void \doxymbox{\hyperlink{struct_web_ae977360e07569609152f6b8725abd9fd}{add\+Range}} (const \doxymbox{\hyperlink{struct_live_range}{Live\+Range}} \&range)
+\begin{DoxyCompactList}\small\item\em Adiciona linhas de um live range ao web. \end{DoxyCompactList}\item 
+\Hypertarget{struct_web_a994a78af65126a8afcf72b7444643422}\label{struct_web_a994a78af65126a8afcf72b7444643422} 
+bool {\bfseries has\+Def\+At} (int line) const
+\begin{DoxyCompactList}\small\item\em Verifica se tem definição numa linha específica. \end{DoxyCompactList}\item 
+\Hypertarget{struct_web_aa5a3f8cb73bd3d1178f52d6301dfc28f}\label{struct_web_aa5a3f8cb73bd3d1178f52d6301dfc28f} 
+bool {\bfseries has\+Use\+At} (int line) const
+\begin{DoxyCompactList}\small\item\em Verifica se tem uso numa linha específica. \end{DoxyCompactList}\item 
+\Hypertarget{struct_web_a1daf0ad084076fd059d0e66e75481125}\label{struct_web_a1daf0ad084076fd059d0e66e75481125} 
+bool {\bfseries interferes\+With} (const \doxymbox{\hyperlink{struct_web}{Web}} \&other) const
+\begin{DoxyCompactList}\small\item\em Verifica interferência com outro web. \end{DoxyCompactList}\item 
+\Hypertarget{struct_web_acab39595f636ace50bd047f97f46e3ae}\label{struct_web_acab39595f636ace50bd047f97f46e3ae} 
+size\+\_\+t {\bfseries size} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_web_af59e2bcb1907d91a75a5d2598e0eb1b6}\label{struct_web_af59e2bcb1907d91a75a5d2598e0eb1b6} 
+int {\bfseries id}
+\item 
+\Hypertarget{struct_web_a439e3c2fbedccfdd8c34dc780066fb4a}\label{struct_web_a439e3c2fbedccfdd8c34dc780066fb4a} 
+std::\+string {\bfseries variable}
+\item 
+\Hypertarget{struct_web_a049674097b5424e02f9db447b8d45bff}\label{struct_web_a049674097b5424e02f9db447b8d45bff} 
+std::\+set$<$ int $>$ {\bfseries lines}
+\item 
+\Hypertarget{struct_web_a99a73e40edaf3c509ddff7d315bd529d}\label{struct_web_a99a73e40edaf3c509ddff7d315bd529d} 
+std::\+set$<$ int $>$ {\bfseries defs\+Lines}
+\item 
+\Hypertarget{struct_web_a94c5646745e10aa9abc2334037be51fa}\label{struct_web_a94c5646745e10aa9abc2334037be51fa} 
+std::\+set$<$ int $>$ {\bfseries uses\+Lines}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{struct_web}{Web} (união de live ranges). 
+
+\label{doc-func-members}
+\Hypertarget{struct_web_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_web_ae977360e07569609152f6b8725abd9fd}\index{Web@{Web}!addRange@{addRange}}
+\index{addRange@{addRange}!Web@{Web}}
+\doxysubsubsection{\texorpdfstring{addRange()}{addRange()}}
+{\footnotesize\ttfamily \label{struct_web_ae977360e07569609152f6b8725abd9fd} 
+void Web::\+add\+Range (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_live_range}{Live\+Range}} \&}]{range}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adiciona linhas de um live range ao web. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em range} & Live range a adicionar \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\doxymbox{\hyperlink{parser_8h}{parser.\+h}}\end{DoxyCompactItemize}

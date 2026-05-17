@@ -1,0 +1,61 @@
+\doxysection{src/\+coloring.cpp File Reference}
+\hypertarget{coloring_8cpp}{}\label{coloring_8cpp}\index{src/coloring.cpp@{src/coloring.cpp}}
+
+
+\doxylink{class_graph}{Graph} coloring algorithms for register allocation (T2.\+1 and T2.\+2).  
+
+
+{\ttfamily \+\#include "{}coloring.\+h"{}}\newline
+{\ttfamily \+\#include $<$stack$>$}\newline
+{\ttfamily \+\#include $<$set$>$}\newline
+{\ttfamily \+\#include $<$iostream$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{struct_allocation_result}{Allocation\+Result}} \doxymbox{\hyperlink{coloring_8cpp_a284ce4296bc324d44f16da6c78ec2491}{basic\+Coloring}} (\doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ \&g, int K)
+\begin{DoxyCompactList}\small\item\em Greedy graph coloring (T2.\+1 -\/ basic). Phase 1:\+ simplification -\/ remove nodes with degree \texorpdfstring{$<$}{<} K onto stack. Phase 2:\+ coloring -\/ pop and assign lowest available color. Time complexity:\+ O(V \texorpdfstring{$\ast$}{*} (V + E)). \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{coloring_8cpp_ab7ed6bf75e9dad4822df73de77518557}{choose\+Spill\+Web}} (\doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ \&g, const std::\+vector$<$ int $>$ \&spilled\+Webs)
+\begin{DoxyCompactList}\small\item\em Selects web with highest degree not yet spilled. Rationale:\+ removing the most-\/connected web simplifies the graph most. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_allocation_result}{Allocation\+Result}} \doxymbox{\hyperlink{coloring_8cpp_a545f58330011e87d5696eac0c8a2ab60}{spilling\+Coloring}} (\doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ \&g, int K, int max\+Spills)
+\begin{DoxyCompactList}\small\item\em Register allocation with web spilling (T2.\+2 -\/ spilling, K). Tries basic\+Coloring, if it fails spills the highest-\/degree web and retries. Time complexity:\+ O(max\+Spills \texorpdfstring{$\ast$}{*} V \texorpdfstring{$\ast$}{*} (V + E)). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_graph}{Graph} coloring algorithms for register allocation (T2.\+1 and T2.\+2). 
+
+
+
+\label{doc-func-members}
+\Hypertarget{coloring_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{coloring_8cpp_a284ce4296bc324d44f16da6c78ec2491}\index{coloring.cpp@{coloring.cpp}!basicColoring@{basicColoring}}
+\index{basicColoring@{basicColoring}!coloring.cpp@{coloring.cpp}}
+\doxysubsubsection{\texorpdfstring{basicColoring()}{basicColoring()}}
+{\footnotesize\ttfamily \label{coloring_8cpp_a284ce4296bc324d44f16da6c78ec2491} 
+\doxymbox{\hyperlink{struct_allocation_result}{Allocation\+Result}} basic\+Coloring (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ \&}]{g}{, }\item[{int}]{K}{}\end{DoxyParamCaption})}
+
+
+
+Greedy graph coloring (T2.\+1 -\/ basic). Phase 1:\+ simplification -\/ remove nodes with degree \texorpdfstring{$<$}{<} K onto stack. Phase 2:\+ coloring -\/ pop and assign lowest available color. Time complexity:\+ O(V \texorpdfstring{$\ast$}{*} (V + E)). 
+
+Greedy graph coloring algorithm (T2.\+1 -\/ algorithm:\+ basic). \Hypertarget{coloring_8cpp_ab7ed6bf75e9dad4822df73de77518557}\index{coloring.cpp@{coloring.cpp}!chooseSpillWeb@{chooseSpillWeb}}
+\index{chooseSpillWeb@{chooseSpillWeb}!coloring.cpp@{coloring.cpp}}
+\doxysubsubsection{\texorpdfstring{chooseSpillWeb()}{chooseSpillWeb()}}
+{\footnotesize\ttfamily \label{coloring_8cpp_ab7ed6bf75e9dad4822df73de77518557} 
+int choose\+Spill\+Web (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ \&}]{g}{, }\item[{const std::\+vector$<$ int $>$ \&}]{spilled\+Webs}{}\end{DoxyParamCaption})}
+
+
+
+Selects web with highest degree not yet spilled. Rationale:\+ removing the most-\/connected web simplifies the graph most. 
+
+Chooses the best web to spill (highest degree = most interfering). \Hypertarget{coloring_8cpp_a545f58330011e87d5696eac0c8a2ab60}\index{coloring.cpp@{coloring.cpp}!spillingColoring@{spillingColoring}}
+\index{spillingColoring@{spillingColoring}!coloring.cpp@{coloring.cpp}}
+\doxysubsubsection{\texorpdfstring{spillingColoring()}{spillingColoring()}}
+{\footnotesize\ttfamily \label{coloring_8cpp_a545f58330011e87d5696eac0c8a2ab60} 
+\doxymbox{\hyperlink{struct_allocation_result}{Allocation\+Result}} spilling\+Coloring (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ \&}]{g}{, }\item[{int}]{K}{, }\item[{int}]{max\+Spills}{}\end{DoxyParamCaption})}
+
+
+
+Register allocation with web spilling (T2.\+2 -\/ spilling, K). Tries basic\+Coloring, if it fails spills the highest-\/degree web and retries. Time complexity:\+ O(max\+Spills \texorpdfstring{$\ast$}{*} V \texorpdfstring{$\ast$}{*} (V + E)). 
+
+Register allocation with web spilling (T2.\+2 -\/ algorithm:\+ spilling, K). 

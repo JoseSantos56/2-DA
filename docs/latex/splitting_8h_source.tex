@@ -1,0 +1,22 @@
+\doxysection{splitting.\+h}
+\hypertarget{splitting_8h_source}{}\label{splitting_8h_source}\index{src/splitting.h@{src/splitting.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SPLITTING\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SPLITTING\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Graph.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{parser_8h}{parser.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keywordtype}{int}\ chooseWeb(\doxymbox{\hyperlink{class_graph}{Graph<int>}}\&\ g);\ \ \ \ \ \ \ \textcolor{comment}{//\ Greedy\ escolher\ a\ web\ que\ têm\ amior\ innterseção\ de\ webs}}
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{int}\ findLargestGap(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_web}{Web}}\&\ web);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De\ perferencia\ o\ allWebs\ tem\ como\ indice\ no\ vetor\ o\ ID\ do\ vertex/Web}}
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{bool}\ websIntersection(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_web}{Web}}\&\ web1,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_web}{Web}}\&\ web2);}
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{int}\ splitGap(\doxymbox{\hyperlink{class_graph}{Graph<int>}}\&\ g,\ std::vector<Web>\&\ allWebs,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ bestWebId,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ bestGapId);\ \ \ \ \ \ \ \textcolor{comment}{//\ Dividir\ no\ Gap}}
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{int}\ splitMiddle(\doxymbox{\hyperlink{class_graph}{Graph<int>}}\&\ g,\ std::vector<Web>\&\ allWebs,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ bestWebId);}
+\DoxyCodeLine{00014\ \doxymbox{\hyperlink{struct_allocation_result}{AllocationResult}}\ splitWeb(\doxymbox{\hyperlink{class_graph}{Graph<int>}}\&\ g,\ std::vector<Web>\&\ allWebs,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ n,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ k);\ \ \ \ \ \textcolor{comment}{//\ Splittar\ a\ web}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//SPLITTING\_H}}
+
+\end{DoxyCode}

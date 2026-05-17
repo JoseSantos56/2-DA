@@ -1,0 +1,22 @@
+\doxysection{web\+\_\+builder.\+h}
+\hypertarget{web__builder_8h_source}{}\label{web__builder_8h_source}\index{src/web\_builder.h@{src/web\_builder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ WEB\_BUILDER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ WEB\_BUILDER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Graph.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{parser_8h}{parser.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_web_builder}{WebBuilder}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<Web>\ \doxymbox{\hyperlink{class_web_builder_adb56fe62a1e6849a18360b9df0580534}{buildWebs}}(\textcolor{keyword}{const}\ std::vector<LiveRange>\&\ ranges);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_web_builder_afad27ac61e58c61b2bf9b10e3febe86c}{buildInterferenceGraph}}(\textcolor{keyword}{const}\ std::vector<Web>\&\ webs,\ \doxymbox{\hyperlink{class_graph}{Graph<int>}}\&\ g);}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ WEB\_BUILDER\_H}}
+
+\end{DoxyCode}
