@@ -7,40 +7,40 @@
 #include <map>
 
 /**
- * @brief Builds webs from live ranges and constructs the interference graph.
+ * @brief Constrói webs a partir dos live ranges e o grafo de interferência.
  *
- * A web is the union of live ranges of the same variable that overlap
- * at any program point. Two webs interfere if they are simultaneously
- * live at any program point.
+ * Um web é a união dos live ranges da mesma variável que se sobrepõem
+ * em algum ponto do programa. Dois webs interferem se estiverem
+ * simultaneamente vivos em algum ponto do programa.
  */
 class WebBuilder {
 public:
     /**
-     * @brief Merges live ranges into webs for each variable.
+     * @brief Funde os live ranges em webs para cada variável.
      *
-     * Live ranges of the same variable are merged into a single web
-     * if they share any program line. Uses a greedy union approach.
+     * Os live ranges da mesma variável são fundidos num único web
+     * se partilharem alguma linha de programa. Usa uma abordagem greedy de união.
      *
-     * Time complexity: O(R^2 * L) where R = number of ranges, L = lines per range.
+     * Complexidade temporal: O(R^2 * L) onde R = número de ranges, L = linhas por range.
      *
-     * @param ranges  All live ranges parsed from input
-     * @return        Vector of webs (each with a unique ID)
+     * @param ranges  Todos os live ranges lidos do ficheiro de input
+     * @return        Vetor de webs (cada um com um ID único)
      */
     static std::vector<Web> buildWebs(const std::vector<LiveRange>& ranges);
 
     /**
-     * @brief Builds the interference graph from a set of webs.
+     * @brief Constrói o grafo de interferência a partir de um conjunto de webs.
      *
-     * Adds one vertex per web. Adds a bidirectional edge between two webs
-     * if they interfere (i.e., are simultaneously live at some point).
+     * Adiciona um vértice por web. Adiciona uma aresta bidirecional entre dois webs
+     * se interferirem (ou seja, se estiverem simultaneamente vivos em algum ponto).
      *
-     * Special case: a web A starting at line X (definition) and web B
-     * ending at line X (use) do NOT interfere at that point.
+     * Caso especial: um web A que começa na linha X (definição) e um web B
+     * que termina na linha X (uso) NÃO interferem nesse ponto.
      *
-     * Time complexity: O(W^2 * L) where W = number of webs, L = lines per web.
+     * Complexidade temporal: O(W^2 * L) onde W = número de webs, L = linhas por web.
      *
-     * @param webs  Vector of webs
-     * @param g     Output interference graph (Graph<int>, node = web ID)
+     * @param webs  Vetor de webs
+     * @param g     Grafo de interferência de output (Graph<int>, nó = ID do web)
      */
     static void buildInterferenceGraph(const std::vector<Web>& webs, Graph<int>& g);
 };
