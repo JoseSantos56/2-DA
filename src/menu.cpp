@@ -107,10 +107,7 @@ bool Menu::processAndWrite(const std::string& rangesFile,const std::string& conf
                                      config.parameter);
         }
         else if (config.algorithm == "splitting") {
-            // Nota: splitting requer estrutura WebInfo adicional
-            // Implementação simplificada: fallback para basic + warning
-            std::cerr << "Warning: splitting not fully implemented, using basic\n";
-            result = basicColoring(interferenceGraph, config.numRegisters);
+            result = splitWeb(interferenceGraph, webs, config.parameter, config.numRegisters);
         }
         else if (config.algorithm == "free") {
             std::vector<int> colors;

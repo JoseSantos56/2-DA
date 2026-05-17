@@ -1,1 +1,15 @@
 Apenas para gravar o diretório no git
+
+/* ========= Structs utilizadas apenas para fase inicial de desenvolvimento ==========*/
+
+struct Interval {
+    int start;
+    int end;
+};
+
+struct WebInfo {
+    int id;
+    std::vector<Interval> intervals;
+};
+
+/* ===================================== Até aqui ===================================== */
