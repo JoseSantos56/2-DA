@@ -38,7 +38,7 @@ int \doxymbox{\hyperlink{coloring_8cpp_ab7ed6bf75e9dad4822df73de77518557}{choose
 
 Greedy graph coloring (T2.\+1 -\/ basic). Phase 1:\+ simplification -\/ remove nodes with degree \texorpdfstring{$<$}{<} K onto stack. Phase 2:\+ coloring -\/ pop and assign lowest available color. Time complexity:\+ O(V \texorpdfstring{$\ast$}{*} (V + E)). 
 
-Greedy graph coloring algorithm (T2.\+1 -\/ algorithm:\+ basic). \Hypertarget{coloring_8cpp_ab7ed6bf75e9dad4822df73de77518557}\index{coloring.cpp@{coloring.cpp}!chooseSpillWeb@{chooseSpillWeb}}
+Algoritmo greedy de coloração de grafos (T2.\+1 -\/ algoritmo:\+ basic). \Hypertarget{coloring_8cpp_ab7ed6bf75e9dad4822df73de77518557}\index{coloring.cpp@{coloring.cpp}!chooseSpillWeb@{chooseSpillWeb}}
 \index{chooseSpillWeb@{chooseSpillWeb}!coloring.cpp@{coloring.cpp}}
 \doxysubsubsection{\texorpdfstring{chooseSpillWeb()}{chooseSpillWeb()}}
 {\footnotesize\ttfamily \label{coloring_8cpp_ab7ed6bf75e9dad4822df73de77518557} 
@@ -48,7 +48,7 @@ int choose\+Spill\+Web (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{clas
 
 Selects web with highest degree not yet spilled. Rationale:\+ removing the most-\/connected web simplifies the graph most. 
 
-Chooses the best web to spill (highest degree = most interfering). \Hypertarget{coloring_8cpp_a545f58330011e87d5696eac0c8a2ab60}\index{coloring.cpp@{coloring.cpp}!spillingColoring@{spillingColoring}}
+Escolhe o melhor web para spill (maior grau = mais interferente). \Hypertarget{coloring_8cpp_a545f58330011e87d5696eac0c8a2ab60}\index{coloring.cpp@{coloring.cpp}!spillingColoring@{spillingColoring}}
 \index{spillingColoring@{spillingColoring}!coloring.cpp@{coloring.cpp}}
 \doxysubsubsection{\texorpdfstring{spillingColoring()}{spillingColoring()}}
 {\footnotesize\ttfamily \label{coloring_8cpp_a545f58330011e87d5696eac0c8a2ab60} 
@@ -58,4 +58,4 @@ Chooses the best web to spill (highest degree = most interfering). \Hypertarget{
 
 Register allocation with web spilling (T2.\+2 -\/ spilling, K). Tries basic\+Coloring, if it fails spills the highest-\/degree web and retries. Time complexity:\+ O(max\+Spills \texorpdfstring{$\ast$}{*} V \texorpdfstring{$\ast$}{*} (V + E)). 
 
-Register allocation with web spilling (T2.\+2 -\/ algorithm:\+ spilling, K). 
+Alocação de registos com spilling de webs (T2.\+2 -\/ algoritmo:\+ spilling, K). 

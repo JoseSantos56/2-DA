@@ -2,7 +2,7 @@
 \hypertarget{class_web_builder}{}\label{class_web_builder}\index{WebBuilder@{WebBuilder}}
 
 
-Builds webs from live ranges and constructs the interference graph.  
+Constrói webs a partir dos live ranges e o grafo de interferência.  
 
 
 
@@ -13,15 +13,15 @@ Builds webs from live ranges and constructs the interference graph.
 \begin{DoxyCompactItemize}
 \item 
 static std::\+vector$<$ \doxymbox{\hyperlink{struct_web}{Web}} $>$ \doxymbox{\hyperlink{class_web_builder_adb56fe62a1e6849a18360b9df0580534}{build\+Webs}} (const std::\+vector$<$ \doxymbox{\hyperlink{struct_live_range}{Live\+Range}} $>$ \&ranges)
-\begin{DoxyCompactList}\small\item\em Merges live ranges into webs for each variable. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Funde os live ranges em webs para cada variável. \end{DoxyCompactList}\item 
 static void \doxymbox{\hyperlink{class_web_builder_afad27ac61e58c61b2bf9b10e3febe86c}{build\+Interference\+Graph}} (const std::\+vector$<$ \doxymbox{\hyperlink{struct_web}{Web}} $>$ \&webs, \doxymbox{\hyperlink{class_graph}{Graph}}$<$ int $>$ \&g)
-\begin{DoxyCompactList}\small\item\em Builds the interference graph from a set of webs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Constrói o grafo de interferência a partir de um conjunto de webs. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Builds webs from live ranges and constructs the interference graph. 
+Constrói webs a partir dos live ranges e o grafo de interferência. 
 
-A web is the union of live ranges of the same variable that overlap at any program point. Two webs interfere if they are simultaneously live at any program point. 
+Um web é a união dos live ranges da mesma variável que se sobrepõem em algum ponto do programa. Dois webs interferem se estiverem simultaneamente vivos em algum ponto do programa. 
 
 \label{doc-func-members}
 \Hypertarget{class_web_builder_doc-func-members}
@@ -34,21 +34,21 @@ void Web\+Builder::\+build\+Interference\+Graph (\begin{DoxyParamCaption}\item[{
 
 
 
-Builds the interference graph from a set of webs. 
+Constrói o grafo de interferência a partir de um conjunto de webs. 
 
 Builds interference graph from webs.
 
-Adds one vertex per web. Adds a bidirectional edge between two webs if they interfere (i.\+e., are simultaneously live at some point).
+Adiciona um vértice por web. Adiciona uma aresta bidirecional entre dois webs se interferirem (ou seja, se estiverem simultaneamente vivos em algum ponto).
 
-Special case:\+ a web A starting at line X (definition) and web B ending at line X (use) do NOT interfere at that point.
+Caso especial:\+ um web A que começa na linha X (definição) e um web B que termina na linha X (uso) NÃO interferem nesse ponto.
 
-Time complexity:\+ O(\+W\texorpdfstring{$^\wedge$}{\string^}2 \texorpdfstring{$\ast$}{*} L) where W = number of webs, L = lines per web.
+Complexidade temporal:\+ O(\+W\texorpdfstring{$^\wedge$}{\string^}2 \texorpdfstring{$\ast$}{*} L) onde W = número de webs, L = linhas por web.
 
 
 \begin{DoxyParams}{Parameters}
-{\em webs} & Vector of webs \\
+{\em webs} & Vetor de webs \\
 \hline
-{\em g} & Output interference graph (\doxylink{class_graph}{Graph$<$int$>$}, node = web ID)\\
+{\em g} & Grafo de interferência de output (\doxylink{class_graph}{Graph$<$int$>$}, nó = ID do web)\\
 \hline
 \end{DoxyParams}
 Two webs interfere if they are simultaneously live at any point. Special case:\+ web A defined at line X and web B last used at line X do NOT interfere (definition kills the previous value). \Hypertarget{class_web_builder_adb56fe62a1e6849a18360b9df0580534}\index{WebBuilder@{WebBuilder}!buildWebs@{buildWebs}}
@@ -59,21 +59,21 @@ std::\+vector$<$ \doxymbox{\hyperlink{struct_web}{Web}} $>$ Web\+Builder::\+buil
 
 
 
-Merges live ranges into webs for each variable. 
+Funde os live ranges em webs para cada variável. 
 
 Merges live ranges of the same variable into webs.
 
-Live ranges of the same variable are merged into a single web if they share any program line. Uses a greedy union approach.
+Os live ranges da mesma variável são fundidos num único web se partilharem alguma linha de programa. Usa uma abordagem greedy de união.
 
-Time complexity:\+ O(\+R\texorpdfstring{$^\wedge$}{\string^}2 \texorpdfstring{$\ast$}{*} L) where R = number of ranges, L = lines per range.
+Complexidade temporal:\+ O(\+R\texorpdfstring{$^\wedge$}{\string^}2 \texorpdfstring{$\ast$}{*} L) onde R = número de ranges, L = linhas por range.
 
 
 \begin{DoxyParams}{Parameters}
-{\em ranges} & All live ranges parsed from input \\
+{\em ranges} & Todos os live ranges lidos do ficheiro de input \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Vector of webs (each with a unique ID)
+Vetor de webs (cada um com um ID único)
 \end{DoxyReturn}
 Algorithm:\+ For each variable, collect all its live ranges. Use a greedy union:\+ start a new web with the first range, then for each subsequent range of the same variable, if it shares any line with an existing web, merge into it. Otherwise start a new web. Repeat until no more merges occur (transitive closure). 
 

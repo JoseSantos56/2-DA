@@ -6,46 +6,46 @@
 #include <vector>
 
 /**
- * @brief Greedy graph coloring algorithm (T2.1 - algorithm: basic).
+ * @brief Algoritmo greedy de coloração de grafos (T2.1 - algoritmo: basic).
  *
- * Implements the greedy coloring heuristic from the project description:
- * repeatedly removes nodes with degree < K onto a stack, then pops
- * and assigns colors. If the graph cannot be colored with K colors,
- * reports infeasibility via stderr and returns all webs to memory.
+ * Implementa a heurística greedy de coloração descrita no enunciado:
+ * remove repetidamente nós com grau < K para uma stack e depois
+ * faz pop atribuindo cores. Se o grafo não puder ser colorido com K cores,
+ * reporta inviabilidade via stderr e devolve todos os webs para memória.
  *
- * Time complexity: O(V * (V + E)) where V = number of webs, E = edges.
+ * Complexidade temporal: O(V * (V + E)) onde V = número de webs, E = arestas.
  *
- * @param g   Interference graph (nodes = web IDs)
- * @param K   Maximum number of registers available
- * @return    AllocationResult with the web->register assignment
+ * @param g   Grafo de interferência (nós = IDs dos webs)
+ * @param K   Número máximo de registos disponíveis
+ * @return    AllocationResult com a atribuição web->registo
  */
 AllocationResult basicColoring(Graph<int>& g, int K);
 
 /**
- * @brief Register allocation with web spilling (T2.2 - algorithm: spilling, K).
+ * @brief Alocação de registos com spilling de webs (T2.2 - algoritmo: spilling, K).
  *
- * Attempts basic coloring first. If it fails, spills up to maxSpills webs
- * (chosen by highest degree - most interfering) and retries coloring.
- * Spilled webs are assigned to memory (register = -1).
+ * Tenta primeiro o basicColoring. Se falhar, faz spill de até maxSpills webs
+ * (escolhidos pelo maior grau - mais interferentes) e tenta novamente.
+ * Webs em spill são alocados a memória (registo = -1).
  *
- * Time complexity: O(maxSpills * V * (V + E))
+ * Complexidade temporal: O(maxSpills * V * (V + E))
  *
- * @param g          Interference graph (nodes = web IDs)
- * @param K          Maximum number of registers available
- * @param maxSpills  Maximum number of webs allowed to spill
- * @return           AllocationResult with the web->register assignment
+ * @param g          Grafo de interferência (nós = IDs dos webs)
+ * @param K          Número máximo de registos disponíveis
+ * @param maxSpills  Número máximo de webs permitidos em spill
+ * @return           AllocationResult com a atribuição web->registo
  */
 AllocationResult spillingColoring(Graph<int>& g, int K, int maxSpills);
 
 /**
- * @brief Chooses the best web to spill (highest degree = most interfering).
+ * @brief Escolhe o melhor web para spill (maior grau = mais interferente).
  *
- * Rationale: spilling the most-connected web removes the most edges,
- * giving the best chance of making the remaining graph K-colorable.
+ * Racional: fazer spill do web mais conectado remove o maior número de arestas,
+ * dando a melhor hipótese de tornar o grafo restante K-colorível.
  *
- * @param g              Interference graph
- * @param spilledWebs    Already-spilled web IDs to skip
- * @return               Web ID to spill, or -1 if none available
+ * @param g              Grafo de interferência
+ * @param spilledWebs    IDs dos webs já em spill a ignorar
+ * @return               ID do web a fazer spill, ou -1 se não houver nenhum disponível
  */
 int chooseSpillWeb(Graph<int>& g, const std::vector<int>& spilledWebs);
 
