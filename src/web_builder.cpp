@@ -59,13 +59,13 @@ std::vector<Web> WebBuilder::buildWebs(const std::vector<LiveRange>& ranges) {
                             varWebs[j].lines.begin(),
                             varWebs[j].lines.end()
                         );
-                        varWebs[i].defslines.insert(
-                            varWebs[j].defslines.begin(),
-                            varWebs[j].defslines.end()
+                        varWebs[i].defsLines.insert(
+                            varWebs[j].defsLines.begin(),
+                            varWebs[j].defsLines.end()
                         );
-                        varWebs[i].useslines.insert(
-                            varWebs[j].useslines.begin(),
-                            varWebs[j].useslines.end()
+                        varWebs[i].usesLines.insert(
+                            varWebs[j].usesLines.begin(),
+                            varWebs[j].usesLines.end()
                         );
                         varWebs.erase(varWebs.begin() + j);
                         merged = true;

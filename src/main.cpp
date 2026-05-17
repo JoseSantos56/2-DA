@@ -9,6 +9,7 @@
 #include <string>
 #include "menu.h"
 
+
 /**
  * @brief Função principal
  * @param argc Número de argumentos
@@ -18,15 +19,16 @@
 int main(int argc, char* argv[]) {
     // Modo batch: myProg -b ranges.txt registers.txt allocation.txt
     if (argc == 5 && std::string(argv[1]) == "-b") {
+        Menu menu;
         std::string rangesFile = argv[2];
         std::string registersFile = argv[3];
         std::string outputFile = argv[4];
-
-        return Menu::executeBatch(rangesFile, registersFile, outputFile);
+        menu.executeBatch(rangesFile, registersFile, outputFile);
     }
     // Modo interativo
     else if (argc == 1) {
-        return Menu::executemenu();
+        Menu menu;
+        menu.executeMenu();
     }
     return 0;
 }

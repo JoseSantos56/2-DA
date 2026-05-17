@@ -10,6 +10,7 @@
 #include <vector>
 #include <set>
 #include <algorithm>
+#include <map>
 
 /**
  * @brief Intervalo de vida de uma variável
@@ -35,8 +36,8 @@ struct Web {
     int id;
     std::string variable;
     std::set<int> lines;
-    std::set<int> defslines;
-    std::set<int> useslines;
+    std::set<int> defsLines;
+    std::set<int> usesLines;
 
     Web() : id(-1) {}
     Web(int webId, const std::string& var) : id(webId), variable(var) {}
