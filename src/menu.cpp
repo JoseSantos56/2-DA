@@ -215,12 +215,12 @@ void Menu::executeMenu() {
 
             std::string ranges, regs;
             switch(test) {
-                case 1: ranges = "ranges1.txt"; regs = "registers2.txt"; break;
-                case 2: ranges = "ranges2.txt"; regs = "registers2.txt"; break;
-                case 3: ranges = "ranges3.txt"; regs = "registers2.txt"; break;
-                case 4: ranges = "ranges4.txt"; regs = "registers1.txt"; break;
-                case 5: ranges = "ranges5.txt"; regs = "registers1.txt"; break;
-                case 6: ranges = "ranges6.txt"; regs = "registers3.txt"; break;
+                case 1: ranges = "src/ranges/ranges1.txt"; regs = "src/registers/registers2.txt"; break;
+                case 2: ranges = "src/ranges/ranges2.txt"; regs = "src/registers/registers2.txt"; break;
+                case 3: ranges = "src/ranges/ranges3.txt"; regs = "src/registers/registers2.txt"; break;
+                case 4: ranges = "src/ranges/ranges4.txt"; regs = "src/registers/registers1.txt"; break;
+                case 5: ranges = "src/ranges/ranges5.txt"; regs = "src/registers/registers1.txt"; break;
+                case 6: ranges = "src/ranges/ranges6.txt"; regs = "src/registers/registers3.txt"; break;
                 default: std::cout << "Invalid test number\n"; continue;
             }
             runTest(ranges, regs);
